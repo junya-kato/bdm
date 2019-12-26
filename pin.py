@@ -12,7 +12,7 @@ class PinMode(Enum):
 class Pin:
     @classmethod
     def setmode(cls, mode:PinNumbering):
-        GPIO.setmode(mode)
+        GPIO.setmode(GPIO.BCM)
 
     def __init__(self, number:int, mode:PinMode):
         self.number = number
