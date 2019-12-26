@@ -8,7 +8,7 @@ class Motor:
         self.pinB1 = Pin(B1, PinMode.OUT)
         self.pinB2 = Pin(B2, PinMode.OUT)
 
-    def move(self, deg: int, duration: int):
+    def move(self, deg: float, duration: float):
         """
         move counter clockwise
         """
@@ -27,7 +27,7 @@ class Motor:
         for _ in range(abs(steps)):
             stepper(step_duration)
     
-    def __step_ccw(self, duration:int):
+    def __step_ccw(self, duration:float):
         wait_time = duration / 4
         if not (0.01 <= wait_time <= 0.5):
             raise "not suitable duration for this moter"
@@ -40,7 +40,7 @@ class Motor:
         self.pinA1.low()
         sleep(wait_time)
 
-    def __step_cw(self, duration:int):
+    def __step_cw(self, duration:float):
         wait_time = duration / 4
         if not (0.01 < wait_time < 0.5):
             raise "not suitable duration for this moter"

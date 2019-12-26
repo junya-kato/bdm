@@ -1,9 +1,17 @@
-from motor import Motor
-from time import sleep
+from game_controller import GameController
+from flask import Flask
+app = Flask(__name__)
+
+game_controller = GameController()
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+@app.route("/step/<int:steps>")
+def step(steps):
+    game_controller.step(steps)
+    return "move {} steps".format(steps)
 
 if __name__ == "__main__":
-    Pin.setmode(PinNumbering.BCM)
-    motor = Motor(A1=4, A2=17, B1=27, B2=22)
-    while True:
-        sleep(1)
-        motor.move(90, 1)
+    app.run()
