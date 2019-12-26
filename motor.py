@@ -3,7 +3,6 @@ from time import sleep
 
 class Motor:
     def __init__(self, A1:int, A2:int, B1:int, B2:int, speed = 1):
-        Pin.setmode(PinNumbering.BCM)
         self.pinA1 = Pin(A1, PinMode.OUT)
         self.pinA2 = Pin(A2, PinMode.OUT)
         self.pinB1 = Pin(B1, PinMode.OUT)
