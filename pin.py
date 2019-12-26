@@ -12,11 +12,17 @@ class PinMode(Enum):
 class Pin:
     @classmethod
     def setmode(cls, mode:PinNumbering):
-        GPIO.setmode(GPIO.BCM)
+        if mode == PinNumbering.BCM:
+            GPIO.setmode(GPIO.BCM)
+        else:
+            GPIO.setmode(GPIO.BOARD)
 
     def __init__(self, number:int, mode:PinMode):
         self.number = number
-        GPIO.setup(self.number, mode)
+        if mode == PinMode.OUT:
+            GPIO.setup(self.number, GPIO.OUT)
+        else:
+            GPIO.setup(self.number, GPIO.IN)
     
     def high(self):
         GPIO.output(self.number, GPIO.HIGH)
