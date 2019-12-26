@@ -6,7 +6,7 @@ class Motor:
         Pin.setmode(PinNumbering.BCM)
         self.pinA1 = Pin(A1, PinMode.OUT)
         self.pinA2 = Pin(A2, PinMode.OUT)
-        self.pinB1 = Pin(A1, PinMode.OUT)
+        self.pinB1 = Pin(B1, PinMode.OUT)
         self.pinB2 = Pin(B2, PinMode.OUT)
 
     def move(self, deg: int, duration: int):
@@ -20,17 +20,17 @@ class Motor:
         steps = int(deg*100/360)
         step_duration = duration / steps
 
-        if(step < 0):
+        if(steps < 0):
             stepper = self.__step_cw
         else:
             stepper = self.__step_ccw
 
-        for _ in range(abs(step)):
+        for _ in range(abs(steps)):
             stepper(step_duration)
     
     def __step_ccw(self, duration:int):
         wait_time = duration / 4
-        if not (0.01 < wait_time < 0.5):
+        if not (0.01 <= wait_time <= 0.5):
             raise "not suitable duration for this moter"
         self.pinB1.high()
         sleep(wait_time)
