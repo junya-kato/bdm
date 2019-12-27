@@ -6,12 +6,12 @@ game_controller = GameController()
 
 @app.route("/")
 def hello():
-    return render_template("index.html")#"Hello World!"
+    return render_template("index.html", steps=0)#"Hello World!"
 
 @app.route("/step/<int:steps>")
 def step(steps):
     game_controller.step(steps)
-    return render_template("index.html")#"move {} steps".format(steps)
+    return render_template("index.html", steps=steps)#"move {} steps".format(steps)
 
 @app.route("/round")
 def rounding():
