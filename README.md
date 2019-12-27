@@ -16,8 +16,8 @@ git add <file名>
 
 ```
 git commit
-# 変更した内容 を示す
-git commit -m "<commti log>"
+# 変更した内容(commit log) を示す
+git commit -m "<commit log>"
 ```
 
 3. プッシュ リモートリポジトリにコミット内容をコピー
