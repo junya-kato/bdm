@@ -1,1 +1,35 @@
 # BDM class repo
+
+## git 使い方
+
+### 編集したファイルをアップロードするとき
+1. アップロードするファイルを決める staging
+
+```
+# 全部のとき
+git add -A
+# 一部のとき
+git add <file名>
+```
+ 
+2. コミット 変更を確定する。(ローカルで)
+
+```
+git commit
+# 変更した内容 を示す
+git commit -m "<commti log>"
+```
+
+3. プッシュ リモートリポジトリにコミット内容をコピー
+
+```
+git push
+# or
+git push origin master
+```
+
+##  編集された内容を取ってくる
+
+```
+git pull
+```
