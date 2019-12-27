@@ -33,3 +33,14 @@ git push origin master
 ```
 git pull
 ```
+
+##  変更しているファイルがあるかどうか見たいとき(stagingされているかsareteiruka)
+```
+git status
+```
+
+## commitしたかどうか(origin/master は リモート HEAD -> master はローカル)
+```
+git log
+```
+Qで終了
