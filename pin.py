@@ -1,4 +1,9 @@
-from RPi import GPIO
+import os
+if os.getenv("GAME_ENV") == "dev":
+    import gpio_mock as GPIO
+else:
+    from RPi import GPIO
+
 from enum import Enum
 
 class PinNumbering(Enum):

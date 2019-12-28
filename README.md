@@ -1,8 +1,33 @@
 # BDM class repo
 
-## git 使い方
+### セットアップ
 
-### 編集したファイルをアップロードするとき
+python3 系でしか動きません
+
+#### ラズパイにモータをつけて動かすとき
+
+```
+# shellで
+$ python main.py
+# or
+$ python3 main.py
+```
+
+#### モータをつながずに動かす場合
+
+標準出力にモータの回転角が表示されます
+
+```
+# shellで
+$ GAME_ENV=dev python main.py
+# or
+$ GAME_ENV=dev python3 main.py
+```
+
+### git 使い方
+
+#### 編集したファイルをアップロードするとき
+
 1. アップロードするファイルを決める staging
 
 ```
@@ -11,7 +36,7 @@ git add -A
 # 一部のとき
 git add <file名>
 ```
- 
+
 2. コミット 変更を確定する。(ローカルで)
 
 ```
@@ -28,19 +53,22 @@ git push
 git push origin master
 ```
 
-##  編集された内容を取ってくる
+#### 編集された内容を取ってくる
 
 ```
 git pull
 ```
 
-##  変更しているファイルがあるかどうか見たいとき(stagingされているかsareteiruka)
+#### 変更しているファイルがあるかどうか見たいとき(staging されているか sareteiruka)
+
 ```
 git status
 ```
 
-## commitしたかどうか(origin/master は リモート HEAD -> master はローカル)
+#### commit したかどうか(origin/master は リモート HEAD -> master はローカル)
+
 ```
 git log
 ```
-Qで終了
+
+Q で終了

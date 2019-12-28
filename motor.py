@@ -23,9 +23,11 @@ class Motor:
             stepper = self.__step_cw
         else:
             stepper = self.__step_ccw
-
+        print("moving...")
         for _ in range(abs(steps)):
             stepper(step_duration)
+
+        print("moved {} degree".format(deg))
     
     def __step_ccw(self, duration:float):
         wait_time = duration / 4
