@@ -1,8 +1,11 @@
 from game_controller import GameController
 from flask import Flask, render_template
+from random import random
+from professor import Professor
 app = Flask(__name__)
 
 game_controller = GameController()
+professor = Professor()
 
 @app.route("/")
 def hello():
@@ -17,6 +20,15 @@ def step(steps):
 def rounding():
     game_controller.round()
     return "rounding"
+
+@app.route("/random")
+def randomstep():
+    steps = int(1 + random()*6)
+    game_controller.step(steps)
+    teacher = professor.name()
+    score = professor.score()
+    grade = professor.grade(score)
+    return render_template("index.html",steps=steps, teacher=teacher, score=score, grade=grade)
 
 @app.route("/move/<int:distance>")
 def move(distance):
