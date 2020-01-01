@@ -3,6 +3,7 @@ from belt import Belt
 from koma import Koma
 from pin import Pin, PinNumbering
 from course import Course
+import threading
 
 class GameController:
     def __init__(self):
@@ -16,8 +17,14 @@ class GameController:
         while(True):
             self.motor.move(90, 1)
 
+    def move_async(self, distance):
+        threading.Thread(target=self.move, args=(distance, )).start()
+
     def move(self, distance):
         self.belt.forward(distance)
+
+    def step_async(self, steps):
+        threading.Thread(target=self.step, args=(steps, )).start()
 
     def step(self, steps):
         self.koma.step(steps, course=self.course)
