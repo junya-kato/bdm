@@ -13,7 +13,7 @@ def hello():
 
 @app.route("/step/<int:steps>")
 def step(steps):
-    game_controller.step(steps)
+    game_controller.step_async(steps)
     return render_template("index.html", steps=steps)#"move {} steps".format(steps)
 
 @app.route("/round")
@@ -24,7 +24,7 @@ def rounding():
 @app.route("/random")
 def randomstep():
     steps = int(1 + random()*6)
-    game_controller.step(steps)
+    game_controller.step_async(steps)
     teacher = professor.name()
     score = professor.score()
     grade = professor.grade(score)
@@ -32,7 +32,7 @@ def randomstep():
 
 @app.route("/move/<int:distance>")
 def move(distance):
-    game_controller.move(distance)
+    game_controller.move_async(distance)
     return "move {}".format(distance)
 
 if __name__ == "__main__":
