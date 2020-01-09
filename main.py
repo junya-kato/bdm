@@ -1,15 +1,16 @@
 #! /usr/bin/python3
 
 from game_controller import GameController
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from random import random
+import threading
 app = Flask(__name__)
 
 game_controller = GameController()
 
 @app.route("/")
 def hello():
-    return render_template("index.html", steps=0)#"Hello World!"
+    return render_template("home.html")
 
 @app.route("/step/<int:steps>")
 def step(steps):
@@ -20,6 +21,25 @@ def step(steps):
 def rounding():
     game_controller.round()
     return "rounding"
+
+round_thread  = threading.Thread(target=game_controller.round)
+
+@app.route("/admin")
+def admin():
+    global round_thread, game_controller
+    if (request.args.get("forward") == "true"):
+        game_controller.move(2)
+    if (request.args.get("round") == "true"):
+        if not round_thread.is_alive():
+            round_thread.start()
+    if (request.args.get("killround") == "true"):
+        game_controller.can_round = False
+        round_thread.join()
+        game_controller.can_round = True
+        round_thread  = threading.Thread(target=game_controller.round)
+    if (request.args.get("reset") == "true"):
+        game_controller = GameController()
+    return render_template("admin.html")
 
 @app.route("/random")
 def randomstep():

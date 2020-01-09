@@ -14,10 +14,13 @@ class GameController:
         self.koma = Koma(belt=self.belt)
         self.user = User(koma=self.koma)
         self.course = Course()
-    
+        self.can_round = True
+
     def round(self):
         while(True):
-            self.motor.move(90, 1)
+            if not self.can_round:
+                return
+            self.motor.move(9, 0.1)
 
     def move_async(self, distance):
         threading.Thread(target=self.move, args=(distance, )).start()
