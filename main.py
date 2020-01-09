@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 from game_controller import GameController
 from flask import Flask, render_template
 from random import random
